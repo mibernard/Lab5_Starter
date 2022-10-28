@@ -30,4 +30,25 @@ function init() {
     document.querySelector('#expose img').src = hornSource;
     document.querySelector('#expose audio').src = audioSource;
   })
+
+  // Add event listener for when the play sound button is pressed
+  const soundButton = document.querySelector('#expose button');
+  soundButton.addEventListener('click', (event) => {
+    // Set audio to the audio source of the selected horn
+    let audio = new Audio(document.querySelector('#expose audio').src);
+    // Set the volume of the audio to the value of the volume control
+    audio.volume = document.querySelector('#volume-controls #volume').value/100;
+    // Play audio
+    audio.play();
+    // If the current horn is the party horn, shoot out confetti
+    if (hornSelector.value == 'party-horn') {
+      // Display confetti
+      const jsConfetti = new JSConfetti();
+      jsConfetti.addConfetti({
+        confettiRadius: 5,
+        confettiNumber: 1000,
+      })
+    }
+  });
+
 }
