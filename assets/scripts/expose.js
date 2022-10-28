@@ -30,4 +30,12 @@ function init() {
     document.querySelector('#expose img').src = hornSource;
     document.querySelector('#expose audio').src = audioSource;
   })
+
+  const soundButton = document.querySelector('#expose button');
+  soundButton.addEventListener('click', (event) => {
+    let audio = new Audio(document.querySelector('#expose audio').src);
+    audio.volume = document.querySelector('#volume-controls #volume').value/100;
+    audio.play();
+  });
+
 }
